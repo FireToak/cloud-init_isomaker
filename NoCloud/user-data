@@ -1,0 +1,38 @@
+#cloud-config
+hostname: default
+fqdn: default.domain.lan
+
+users:
+  - name: louis
+    groups: sudo
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID156uzUh8uLuF4NezYXtSPkk4M41UGTI98YvaHZZjYi louis@pc-dev-louis-medo
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: false
+  - name: ubuntu
+    groups: sudo
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID156uzUh8uLuF4NezYXtSPkk4M41UGTI98YvaHZZjYi louis@pc-dev-louis-medo
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    passwd: "azerty"
+    lock_passwd: false
+package_update: true
+package_upgrade: true
+
+chpasswd:
+  users:
+    - name: ubuntu
+      password: "azerty"
+      type: text
+    - name: louis
+      password: "azerty"
+      type: text
+  expire: false
+
+packages:
+  - curl
+  - vim
+runcmd:
+  - touch /tmp/cloud-init-complete
