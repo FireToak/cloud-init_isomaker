@@ -5,11 +5,10 @@ ethernets:
       name: "ens33"
     dhcp4: false
     addresses:
-      - 15.15.15.15/24
+      - @@IP@@/@@MASQUE@@
     routes:
       - to: default
-        via: 16.16.16.16
+        via: @@PASSERELLE@@
     nameservers:
       addresses:
-        - 8.8.8.8
-        - 1.1.1.1
+        - @@DNS@@

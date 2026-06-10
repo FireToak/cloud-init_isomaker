@@ -53,10 +53,10 @@ if (Test-Path $NetworkFile) {
     $NetworkContent = Get-Content -Path $NetworkFile -Raw
     
 	Write-Host "IP : $($AdresseIP)"
-    $NetworkContent = $NetworkContent -replace '15\.15\.15\.15', "$AdresseIP"
-    $NetworkContent = $NetworkContent -replace '/24', "/$Masque"
-    $NetworkContent = $NetworkContent -replace 'via: 16\.16\.16\.16', "via: $Passerelle"
-    $NetworkContent = $NetworkContent -replace '- 8\.8\.8\.8', "- $DNS"
+    $NetworkContent = $NetworkContent -replace '@@IP@@', $AdresseIP
+    $NetworkContent = $NetworkContent -replace '@@MASQUE@@', $Masque
+    $NetworkContent = $NetworkContent -replace '@@PASSERELLE@@', $Passerelle
+    $NetworkContent = $NetworkContent -replace '@@DNS@@', $DNS
     
     # Conversion forcée en LF (Unix) et écriture
     $NetworkContent = $NetworkContent -replace "`r`n", "`n"
